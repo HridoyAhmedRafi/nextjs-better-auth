@@ -24,13 +24,33 @@ export default function Navbar() {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="#" className="font-medium text-accent" aria-current="page">
+        <Link href="/services">Services</Link>
+      </li>
+      <li>
+        <Link
+          href="/dashboard"
+          className="font-medium text-accent"
+          aria-current="page"
+        >
           Dashboard
         </Link>
       </li>
+
       <li>
-        <Link href="#">Pricing</Link>
+        <Link href="/profile">Profile</Link>
       </li>
+
+      {session?.user && (
+        <li>
+          <Link href="/settings">Settings</Link>
+        </li>
+      )}
+
+      {/* {session?.user && (
+        <li>
+          <Link href="/profile">Profile</Link>
+        </li>
+      )} */}
     </>
   );
 
@@ -88,7 +108,9 @@ export default function Navbar() {
             </svg>
           </button>
           <div className="flex items-center gap-3">
-            <p className="font-bold">ACME</p>
+            <Link href={"/"} className="font-bold">
+              Your Logo
+            </Link>
           </div>
         </div>
         <ul className="hidden items-center gap-4 md:flex">{links}</ul>

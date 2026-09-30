@@ -1,7 +1,7 @@
 "use client";
 
 // import { signUp } from "@/lib/auth-client";
-import { signUp } from "../../../lib/auth-client";
+import { signIn, signUp } from "../../../lib/auth-client";
 // import { signUp } from "../../../lib/auth-client.js";
 // import { Check } from "@gravity-ui/icons";
 
@@ -26,7 +26,11 @@ const SignUpPage = () => {
       email: data.email,
       password: data.password,
     });
-    console.log(resData, error);
+  };
+  const handleSignInWithGoogle = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -92,6 +96,7 @@ const SignUpPage = () => {
             </Description>
             <FieldError />
           </TextField>
+
           <div className="flex gap-2">
             <Button type="submit">
               {/* <Check />  */}
@@ -101,6 +106,9 @@ const SignUpPage = () => {
               Reset
             </Button>
           </div>
+          <Button type="button" onClick={handleSignInWithGoogle}>
+            Sign up with google
+          </Button>
         </Form>
       </div>
     </div>

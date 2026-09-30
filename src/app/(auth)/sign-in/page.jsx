@@ -22,14 +22,19 @@ const SignInPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
-    console.log("before submit", data);
+
     const { data: resData, error } = await signIn.email({
       email: data.email,
       password: data.password,
       rememberMe: true,
       // callbackURL: "/",
     });
-    console.log("after submit", resData, error);
+  };
+
+  const handleSignInWithGoogle = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -49,12 +54,12 @@ const SignInPage = () => {
             }}
           >
             <Label>Email</Label>
-            <Input placeholder="john@example.com" />
+            <Input placeholder="Enter your email" />
             <FieldError />
           </TextField>
 
           <TextField
-            className="w-full max-w-[280px]"
+            className="w-full max-w-70"
             name="password"
             isRequired
             minLength={8}
@@ -74,6 +79,7 @@ const SignInPage = () => {
             <Label>Password</Label>
             <InputGroup>
               <InputGroup.Input
+                placeholder="Enter your password"
                 className="w-full max-w-70"
                 type={isVisible ? "text" : "password"}
               />
@@ -108,6 +114,9 @@ const SignInPage = () => {
               Reset
             </Button>
           </div>
+          <Button type="button" onClick={handleSignInWithGoogle}>
+            Sign in with google
+          </Button>
         </Form>
       </div>
     </div>
