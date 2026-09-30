@@ -24,6 +24,7 @@ export const auth = betterAuth({
         Click <a href="${url}">here</a> to verify your email.`,
       });
     },
+    
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     expiresIn: 3600, // 1 hour
