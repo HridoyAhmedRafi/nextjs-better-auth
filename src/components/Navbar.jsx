@@ -3,12 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button, Spinner } from "@heroui/react";
 import { signOut, useSession } from "../lib/auth-client";
-// import { useSession } from "../lib/auth-client";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session, isPending } = useSession();
-  console.log("session in the navber", session);
   if (isPending) {
     return (
       <div className="flex flex-col items-center gap-2">
